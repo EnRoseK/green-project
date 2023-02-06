@@ -1,0 +1,8 @@
+[
+    { "id": 1, "title": "Технологи", "description": "Технологи мэдээ" },
+    { "id": 2, "title": "Цаг Үе", "description": "Цаг үеийн мэдээ" },
+    { "id": 3, "title": "Түүх", "description": "Түүхийн мэдээ" },
+    { "id": 4, "title": "Соёл", "description": "Соёлийн мэдээ" },
+    { "id": 5, "title": "Спорт", "description": "Спортийн мэдээ" },
+    { "id": 6, "title": "Гадаад мэдээ", "description": "Гадаад мэдээ" }
+]
