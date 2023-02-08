@@ -3,12 +3,18 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 export const MenuCreate = ({ afterSubmit, positionId }) => {
   const [name, setName] = useState('');
   const [link, setLink] = useState('#');
   const [newTab, setNewTab] = useState(false);
   const [ordering, setOrdering] = useState(0);
+
+  const nameInputRef = useRef(null);
+
+  useEffect(() => nameInputRef.current.focus(), []);
 
   const submit = () => {
     axios
@@ -39,6 +45,7 @@ export const MenuCreate = ({ afterSubmit, positionId }) => {
           }}
           type='text'
           placeholder='Name of the menu...'
+          ref={nameInputRef}
         />
       </Form.Group>
       <Form.Group className='mb-3'>

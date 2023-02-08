@@ -21,7 +21,7 @@ import { ModalProvider } from './context/ModalContext';
 
 const App = () => {
   const [me, setMe] = useState(undefined);
-  const [menuShow, setMenuShow] = useState(false);
+  const [menuShow, setMenuShow] = useState(JSON.parse(localStorage.getItem('sideBar')) || false);
   const [menus, setMenus] = useState([]);
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const App = () => {
       setMe(JSON.parse(myData));
     }
   }, []);
+
+  useEffect(() => localStorage.setItem('sideBar', menuShow), [menuShow]);
 
   useEffect(() => {
     axios.get('http://localhost:8000/menus/admin').then((res) => setMenus(res.data));

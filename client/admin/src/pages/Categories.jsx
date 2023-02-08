@@ -18,10 +18,6 @@ export const Categories = () => {
       .catch((err) => toast.error(`Алдаа гарлаа`));
   }, []);
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
-
   const afterSubmit = (category) => {
     modalClose();
     const newCategories = [...categories, category];

@@ -4,10 +4,16 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 export const MenuPositionCreate = ({ afterSubmit }) => {
   const [name, setName] = useState('');
   const [alias, setAlias] = useState('');
+
+  const nameInputRef = useRef(null);
+
+  useEffect(() => nameInputRef.current.focus(), []);
 
   const submit = () => {
     axios
@@ -37,6 +43,7 @@ export const MenuPositionCreate = ({ afterSubmit }) => {
           }}
           type='text'
           placeholder='Name of the position...'
+          ref={nameInputRef}
         />
       </Form.Group>
       <Form.Group className='mb-3'>
