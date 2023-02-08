@@ -17,6 +17,7 @@ import { PostEdit } from './components/Blogs/PostEdit';
 import { MenuPositions } from './pages/MenuPositions';
 import { Menus } from './pages/Menus';
 import axios from 'axios';
+import { ModalProvider } from './context/ModalContext';
 
 const App = () => {
   const [me, setMe] = useState(undefined);
@@ -46,7 +47,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <ModalProvider>
       <Navbar onToggle={() => setMenuShow(!menuShow)} />
       <div className='main-wrapper'>
         <div className={`off-menu bg-dark ${menuShow && 'show'}`}>
@@ -75,7 +76,7 @@ const App = () => {
       </div>
 
       <ToastContainer />
-    </>
+    </ModalProvider>
   );
 };
 

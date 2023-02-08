@@ -1,17 +1,16 @@
 import { Heading } from '../components/Heading';
 import { DynamicModal } from '../components/utils/DynamicModal';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { CategoryEdit } from '../components/Categories/CategoryEdit';
 import { useParams } from 'react-router-dom';
 import { MenuList } from '../components/Menu/MenuList';
 import { MenuCreate } from '../components/Menu/MenuCreate';
+import { ModalContext } from '../context/ModalContext';
 
 export const Menus = () => {
-  const [modalShow, setModalShow] = useState(false);
-  const [modalContent, setModalContent] = useState();
-  const [modalTitle, setModalTitle] = useState('');
+  const { setModalContent, setModalTitle, setModalShow, modalClose } = useContext(ModalContext);
+
   const [position, setPosition] = useState(null);
   const [menus, setMenus] = useState([]);
   const { id } = useParams();
@@ -31,11 +30,6 @@ export const Menus = () => {
     setMenus(newMenus);
   };
 
-  const modalClose = () => {
-    setModalContent();
-    setModalShow(false);
-  };
-
   const showCreateModal = () => {
     setModalContent(<MenuCreate afterSubmit={afterSubmit} positionId={id} />);
     setModalTitle('Create Menu');
@@ -48,7 +42,6 @@ export const Menus = () => {
         <Heading title={`"${position?.name}" - Menus`} handleShow={showCreateModal} />
         <MenuList items={menus} />
       </div>
-      <DynamicModal show={modalShow} handleClose={modalClose} title={modalTitle} content={modalContent} />
     </>
   );
 };

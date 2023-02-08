@@ -58,6 +58,14 @@ app.post('/menu-positions', (req, res) => {
   res.json(newPosition);
 });
 
+app.delete('/menu-positions/:id', (req, res) => {
+  let { id } = req.params;
+  id = Number(id);
+  menuPositions = menuPositions.filter((position) => position.id !== id);
+  fs.writeFileSync('menuPositions.json', JSON.stringify(menuPositions));
+  res.json(id);
+});
+
 // Menus Routes
 let menus = JSON.parse(fs.readFileSync('menus.json', 'utf-8'));
 
