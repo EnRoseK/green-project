@@ -13,7 +13,9 @@ export const CategoryCreate = ({ afterSubmit }) => {
 
   const titleInputRef = useRef(null);
 
-  useEffect(() => titleInputRef.current.focus(), []);
+  useEffect(() => {
+    titleInputRef.current.focus();
+  }, []);
 
   const submit = () => {
     axios

@@ -18,6 +18,7 @@ import { MenuPositions } from './pages/MenuPositions';
 import { Menus } from './pages/Menus';
 import axios from 'axios';
 import { ModalProvider } from './context/ModalContext';
+import { Sidebar } from './components/Sidebar';
 
 const App = () => {
   const [me, setMe] = useState(undefined);
@@ -52,17 +53,7 @@ const App = () => {
     <ModalProvider>
       <Navbar onToggle={() => setMenuShow(!menuShow)} />
       <div className='main-wrapper'>
-        <div className={`off-menu bg-dark ${menuShow && 'show'}`}>
-          <ul>
-            {menus.map((menu) => (
-              <li>
-                <Link to={menu.link} target={menu.newTab ? '_blank' : '_self'}>
-                  {menu.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Sidebar menuShow={menuShow} menus={menus} />
         <div className='off-menu-sibling'>
           <Routes>
             <Route path='/' element={<Home />} />

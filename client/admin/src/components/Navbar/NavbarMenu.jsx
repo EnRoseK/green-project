@@ -8,11 +8,6 @@ export const NavbarMenu = ({ title = '', onToggle }) => {
       <button className='navbar-toggler' onClick={onToggle}>
         <span className='navbar-toggler-icon'></span>
       </button>
-      <div className='navbar-collapse'>
-        <Link className='navbar-brand' to='/'>
-          {title}
-        </Link>
-      </div>
     </>
   );
 };

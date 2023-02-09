@@ -1,46 +1,108 @@
 .dropdown-toggle {
-    cursor: pointer;
+  cursor: pointer;
 }
 .navbar-dark .dropdown-toggle::after {
-    border-top: 0.3em solid rgba(255, 255, 255, 0.7);
+  border-top: 0.3em solid rgba(255, 255, 255, 0.7);
 }
 
 .body-container {
-    max-width: 900px;
+  max-width: 900px;
 }
 
 .main-wrapper {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .off-menu {
-    position: fixed;
-    top: 56px;
-    left: -200px;
-    bottom: 0;
-    width: 200px;
-    color: #fff;
-    transition: 0.2s all;
+  position: fixed;
+  top: 56px;
+  left: -300px;
+  bottom: 0;
+  width: 300px;
+  color: #fff;
+  transition: 0.5s all;
 }
 
 .off-menu-sibling {
-    transition: 0.2s all;
-    padding-left: 0;
+  transition: 0.2s all;
+  padding-left: 0;
 }
 
 .off-menu.show {
-    left: 0;
+  left: 0;
 }
 
 .off-menu.show + .off-menu-sibling {
-    padding-left: 200px;
+  padding-left: 300px;
+}
+
+@media screen and (max-width: 600px) {
+  .off-menu.show + .off-menu-sibling {
+    margin-right: -300px;
+  }
 }
 
 .navbar-toggler {
-    display: block !important;
-    margin-right: 20px !important;
+  display: block !important;
+  margin-right: 20px !important;
 }
 
 .ql-editor {
-    min-height: 300px;
+  min-height: 300px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+}
+
+.sidebar-menu li a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.2s all;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.sidebar-menu li a:hover {
+  color: #ddd;
+}
+
+.sidebar-menu .accordion-item {
+  border: none;
+}
+
+.sidebar-menu .accordion-item button {
+  background-color: rgb(33, 37, 41);
+  padding: 0 10px;
+  box-shadow: none !important;
+}
+
+.accordion-button:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.accordion-button:after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.accordion-body ul {
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-body ul li {
+  border: none;
 }

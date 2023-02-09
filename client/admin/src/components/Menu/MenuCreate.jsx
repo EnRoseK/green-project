@@ -14,7 +14,9 @@ export const MenuCreate = ({ afterSubmit, positionId }) => {
 
   const nameInputRef = useRef(null);
 
-  useEffect(() => nameInputRef.current.focus(), []);
+  useEffect(() => {
+    nameInputRef.current.focus();
+  }, []);
 
   const submit = () => {
     axios

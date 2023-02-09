@@ -11,7 +11,7 @@ export const MenuPositions = () => {
   const [positions, setPositions] = useState([]);
   const { setModalContent, setModalTitle, setModalShow, modalClose } = useContext(ModalContext);
 
-  useEffect(async () => {
+  useEffect(() => {
     axios.get('http://localhost:8000/menu-positions').then((res) => {
       setPositions(res.data);
     });
