@@ -5,18 +5,12 @@ import { CategoryList } from '../components/Categories/CategoryList';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { ModalContext } from '../context/ModalContext';
+import { useModal } from '../context/ModalContext';
+import { useCategories } from '../hooks/categories';
 
 export const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const { setModalContent, setModalTitle, setModalShow, modalClose } = useContext(ModalContext);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/categories`)
-      .then((res) => setCategories(res.data))
-      .catch((err) => toast.error(`Алдаа гарлаа`));
-  }, []);
+  const [categories, setCategories] = useCategories();
+  const { setModalContent, setModalTitle, setModalShow, modalClose } = useModal();
 
   const afterSubmit = (category) => {
     modalClose();
