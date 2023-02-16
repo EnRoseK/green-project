@@ -1,1 +1,18 @@
-[{"id":1,"title":"Технологи","description":"Технологи мэдээ"},{"id":2,"title":"Цаг Үе","description":"Цаг үеийн мэдээ"},{"id":3,"title":"Түүх","description":"Түүхийн мэдээ"},{"id":4,"title":"Соёл","description":"Соёлийн мэдээ"},{"id":5,"title":"Спорт","description":"Спортийн мэдээ"},{"id":6,"title":"Гадаад мэдээ","description":"Гадаад мэдээ"},{"id":7,"title":"Test","description":"Testest"}]
+[
+  { "id": 1, "title": "Технологи", "description": "Технологи мэдээ" },
+  { "id": 2, "title": "Цаг Үе", "description": "Цаг үеийн мэдээ" },
+  { "id": 3, "title": "Түүх", "description": "Түүхийн мэдээ" },
+  { "id": 4, "title": "Соёл", "description": "Соёлийн мэдээ" },
+  { "id": 5, "title": "Спорт", "description": "Спортийн мэдээ" },
+  { "id": 6, "title": "Гадаад мэдээ", "description": "Гадаад мэдээ" },
+  { "id": 7, "title": "Test", "description": "Testest" },
+  { "id": 8, "title": "Test", "description": "Testest" },
+  { "id": 9, "title": "Test", "description": "Testest" },
+  { "id": 10, "title": "Test", "description": "Testest" },
+  { "id": 11, "title": "Test", "description": "Testest" },
+  { "id": 12, "title": "Test", "description": "Testest" },
+  { "id": 13, "title": "Test", "description": "Testest" },
+  { "id": 14, "title": "Test", "description": "Testest" },
+  { "id": 15, "title": "Test", "description": "Testest" },
+  { "id": 16, "title": "Test", "description": "Testest" }
+]

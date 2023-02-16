@@ -1,25 +1,28 @@
-import { Box, Button } from '@mui/material';
+import { Stack } from '@mui/material';
+import { blueGrey } from '@mui/material/colors';
+import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { useToast } from './hooks';
-import { useCrud } from './hooks/useCrud';
-import { useDialog } from './hooks/useDialog';
+import { CategoriesScreen, HomeScreen } from './pages';
+
+const bgColor = blueGrey[50];
+
+const wrapperStyle = {
+  p: 5,
+  bgcolor: bgColor,
+  width: 'calc(100vw - 65px)',
+  minHeight: 'calc(100vh - 65px)',
+  boxSizing: 'border-box',
+};
 
 const App = () => {
-  const showToast = useToast();
-  const showDialog = useDialog();
-
-  const { getList, getItem, createItem, updateItem, deleteItem } = useCrud('http://localhost:8000/categories');
-
   return (
     <Layout>
-      <Box sx={{ p: 5 }}>
-        <Button variant='contained' onClick={() => showToast('Hello Toast', 'success')}>
-          Toggle Toast
-        </Button>
-        <Button variant='outlined' sx={{ marginLeft: 2 }} onClick={() => showDialog()}>
-          Toggle Dialog
-        </Button>
-      </Box>
+      <Stack sx={wrapperStyle}>
+        <Routes>
+          <Route path='/' element={<HomeScreen />} />
+          <Route path='/categories' element={<CategoriesScreen />} />
+        </Routes>
+      </Stack>
     </Layout>
   );
 };
