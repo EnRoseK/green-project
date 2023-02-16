@@ -5,33 +5,9 @@ import { BreadCrumbs } from '../components';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-const columns = [
-  { field: 'id', headerName: '#', width: 50 },
-  { field: 'title', headerName: 'Name', flex: 1 },
-  {
-    field: '',
-    headerName: 'Actions',
-    width: 100,
-    sortable: false,
-    filterable: false,
-    headerAlign: 'center',
-    renderCell: (params) => (
-      <Stack sx={{ flexDirection: 'row' }}>
-        <Tooltip title='Edit'>
-          <IconButton aria-label='edit' color='primary'>
-            <Edit fontSize='inherit' />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title='Delete'>
-          <IconButton aria-label='delete' color='secondary'>
-            <Delete fontSize='inherit' />
-          </IconButton>
-        </Tooltip>
-      </Stack>
-    ),
-  },
-];
+import { useNavigate } from 'react-router-dom';
+import { useDialog } from '../hooks/useDialog';
+import { useToast } from '../hooks';
 
 const breadCrumbs = [
   {
@@ -46,13 +22,63 @@ const breadCrumbs = [
 
 export const CategoriesScreen = () => {
   const [categories, setCategories] = useState([]);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
+  const navigate = useNavigate();
+  const showDialog = useDialog();
+  const showToast = useToast();
 
   useEffect(() => {
     axios.get('http://localhost:8000/categories').then((res) => {
       setCategories(res.data);
     });
   }, []);
+
+  const deleteCategory = (id) => {
+    axios
+      .delete(`http://localhost:8000/categories/${id}`)
+      .then(() => {
+        showToast('Category deleted!', 'success');
+        const newCategories = categories.filter((category) => category.id !== id && category);
+        setCategories(newCategories);
+      })
+      .catch((err) => showToast(err.response.data, 'error'));
+  };
+
+  const columns = [
+    { field: 'id', headerName: '#', width: 50 },
+    { field: 'title', headerName: 'Name', flex: 1 },
+    { field: 'description', headerName: 'Description', flex: 1 },
+    {
+      field: '',
+      headerName: 'Actions',
+      width: 100,
+      sortable: false,
+      filterable: false,
+      headerAlign: 'center',
+      renderCell: (params) => (
+        <Stack sx={{ flexDirection: 'row' }}>
+          <Tooltip title='Edit'>
+            <IconButton aria-label='edit' color='primary' onClick={() => navigate(`/categories/edit/${params.row.id}`)}>
+              <Edit fontSize='inherit' />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='Delete'>
+            <IconButton
+              aria-label='delete'
+              color='secondary'
+              onClick={() =>
+                showDialog('Delete category', 'Are you sure you want to delete this category?', () =>
+                  deleteCategory(params.row.id)
+                )
+              }
+            >
+              <Delete fontSize='inherit' />
+            </IconButton>
+          </Tooltip>
+        </Stack>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -70,7 +96,9 @@ export const CategoriesScreen = () => {
           Categories
         </Typography>
         <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button variant='contained'>New</Button>
+          <Button variant='contained' onClick={() => navigate('/categories/create')}>
+            New
+          </Button>
           <Button variant='contained'>Filter</Button>
         </Stack>
         <Box sx={{ height: 400, width: '100%', mt: 3 }}>

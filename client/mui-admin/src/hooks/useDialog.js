@@ -2,12 +2,15 @@ import { useContext } from 'react';
 import { DialogContext } from '../contexts';
 
 export const useDialog = () => {
-  const { setTitle, setContent, setOpen, setHandleSubmit } = useContext(DialogContext);
+  const { setTitle, setContent, setOpen, handleSubmit } = useContext(DialogContext);
 
-  const showDialog = (handleSubmit = () => setOpen(false), title = '', content = '') => {
+  const showDialog = (title = '', content = '', cb) => {
     setTitle(title);
     setContent(content);
-    setHandleSubmit(() => handleSubmit);
+    handleSubmit.current = () => {
+      cb();
+      setOpen(false);
+    };
     setOpen(true);
   };
 
